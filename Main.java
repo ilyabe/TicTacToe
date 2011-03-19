@@ -6,5 +6,6 @@ public class Main
      {
           Board ticTacToeBoard = new Board();
           ticTacToeBoard.createAndShowBoard();
+          ticTacToeBoard.ticTacToeSquares();
      }
 }
