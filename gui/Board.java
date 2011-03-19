@@ -6,13 +6,13 @@ public class Board
 {
      public static void createAndShowBoard()
      {
+          // Creates a window
           JFrame boardFrame = new JFrame("Tic Tac Toe");
           boardFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-          JLabel boardLabel = new JLabel("Tic Tac Toe");
-          boardFrame.getContentPane().add(boardLabel);
+          // Sets size of the window
+          boardFrame.setSize(400, 400);
 
-          boardFrame.pack();
           boardFrame.setVisible(true);
      }
 }
