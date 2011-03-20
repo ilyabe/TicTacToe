@@ -36,12 +36,13 @@ public class Board
      {
           int moves                = 0;
           String playerSymbol      = "";
+          String buttonClicked     = "";
           boolean[] clickedSquares = new boolean[9];
           
           public void actionPerformed(ActionEvent e)
           {
-               String buttonClicked     = e.getActionCommand();
-               playerSymbol             = getPlayerSymbol(moves);
+               buttonClicked  = e.getActionCommand();
+               playerSymbol   = getPlayerSymbol();
                
                if (clickedSquares[0] == false && buttonClicked.equals("Button0"))
                {
@@ -105,7 +106,7 @@ public class Board
                return moves;
           }
 
-          public String getPlayerSymbol(int turns)
+          public String getPlayerSymbol()
           {
                if (moves % 2 == 0) 
                     playerSymbol = "X";
