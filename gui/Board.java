@@ -6,10 +6,10 @@ import java.awt.event.*;
 
 public class Board
 {
-     static JFrame boardFrame = new JFrame("Tic Tac Toe");
-     static Container pane    = boardFrame.getContentPane();
-     static JButton[] buttons = new JButton[9];         
-     private SquareHandler showXO = new SquareHandler();
+     static JFrame boardFrame      = new JFrame("Tic Tac Toe");
+     static Container pane         = boardFrame.getContentPane();
+     static JButton[] buttons      = new JButton[9];         
+     private SquareHandler showXO  = new SquareHandler();
 
      public static void createAndShowBoard()
      {
@@ -35,17 +35,13 @@ public class Board
      private class SquareHandler implements ActionListener
      {
           int moves = 0;
+          String playerSymbol      = "";
           
           public void actionPerformed(ActionEvent e)
           {
                String buttonClicked     = e.getActionCommand();
-               String playerSymbol      = "";
                int turns                = findWhoseTurnItIs();
-
-               if (turns % 2 == 0) 
-                    playerSymbol = "O";
-               else
-                    playerSymbol = "X";
+               playerSymbol             = getPlayerSymbol(turns);
                
                if (buttonClicked.equals("Button0"))
                     buttons[0].setText(playerSymbol);
@@ -71,6 +67,15 @@ public class Board
           {
                moves += 1;
                return moves;
+          }
+
+          public String getPlayerSymbol(int turns)
+          {
+               if (turns % 2 == 0) 
+                    playerSymbol = "O";
+               else
+                    playerSymbol = "X";
+               return playerSymbol;
           }
      }
 }
