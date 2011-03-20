@@ -34,36 +34,72 @@ public class Board
 
      private class SquareHandler implements ActionListener
      {
-          int moves = 0;
+          int moves                = 0;
           String playerSymbol      = "";
+          boolean[] clickedSquares = new boolean[9];
           
           public void actionPerformed(ActionEvent e)
           {
                String buttonClicked     = e.getActionCommand();
-               int turns                = findWhoseTurnItIs();
-               playerSymbol             = getPlayerSymbol(turns);
+               playerSymbol             = getPlayerSymbol(moves);
                
-               if (buttonClicked.equals("Button0"))
+               if (clickedSquares[0] == false && buttonClicked.equals("Button0"))
+               {
+                    increaseTurnCountByOne();
                     buttons[0].setText(playerSymbol);
-               else if (buttonClicked.equals("Button1")) 
+                    clickedSquares[0] = true;
+               }
+               if (clickedSquares[1] == false && buttonClicked.equals("Button1"))
+               {
+                    increaseTurnCountByOne();
                     buttons[1].setText(playerSymbol);
-               else if (buttonClicked.equals("Button2"))
+                    clickedSquares[1] = true;
+               }
+               if (clickedSquares[2] == false && buttonClicked.equals("Button2"))
+               {
+                    increaseTurnCountByOne();
                     buttons[2].setText(playerSymbol);
-               else if (buttonClicked.equals("Button3"))
+                    clickedSquares[2] = true;
+               }
+               if (clickedSquares[3] == false && buttonClicked.equals("Button3"))
+               {
+                    increaseTurnCountByOne();
                     buttons[3].setText(playerSymbol);
-               else if (buttonClicked.equals("Button4"))
+                    clickedSquares[3] = true;
+               }
+               if (clickedSquares[4] == false && buttonClicked.equals("Button4"))
+               {
+                    increaseTurnCountByOne();
                     buttons[4].setText(playerSymbol);
-               else if (buttonClicked.equals("Button5"))
+                    clickedSquares[4] = true;
+               }
+               if (clickedSquares[5] == false && buttonClicked.equals("Button5"))
+               {
+                    increaseTurnCountByOne();
                     buttons[5].setText(playerSymbol);
-               else if (buttonClicked.equals("Button6"))
+                    clickedSquares[5] = true;
+               }
+               if (clickedSquares[6] == false && buttonClicked.equals("Button6"))
+               {
+                    increaseTurnCountByOne();
                     buttons[6].setText(playerSymbol);
-               else if (buttonClicked.equals("Button7"))
+                    clickedSquares[6] = true;
+               }
+               if (clickedSquares[7] == false && buttonClicked.equals("Button7"))
+               {
+                    increaseTurnCountByOne();
                     buttons[7].setText(playerSymbol);
-               else if (buttonClicked.equals("Button8"))
+                    clickedSquares[7] = true;
+               }
+               if (clickedSquares[8] == false && buttonClicked.equals("Button8"))
+               {
+                    increaseTurnCountByOne();
                     buttons[8].setText(playerSymbol);
+                    clickedSquares[8] = true;
+               }
           }
 
-          public int findWhoseTurnItIs()
+          public int increaseTurnCountByOne()
           {
                moves += 1;
                return moves;
@@ -71,10 +107,10 @@ public class Board
 
           public String getPlayerSymbol(int turns)
           {
-               if (turns % 2 == 0) 
-                    playerSymbol = "O";
-               else
+               if (moves % 2 == 0) 
                     playerSymbol = "X";
+               else
+                    playerSymbol = "O";
                return playerSymbol;
           }
      }
