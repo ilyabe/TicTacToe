@@ -51,7 +51,6 @@ public class Board
                     increaseTurnCountByOne();
                     squares[squareNumber].setText(playerSymbol);
                     clickedSquares[squareNumber] = true;
-                    System.out.println(moves);
                }
           }
 
