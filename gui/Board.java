@@ -8,7 +8,7 @@ public class Board
 {
      static JFrame boardFrame      = new JFrame("Tic Tac Toe");
      static Container pane         = boardFrame.getContentPane();
-     static JButton[] buttons      = new JButton[9];         
+     static JButton[] squares      = new JButton[9];         
      private SquareHandler showXO  = new SquareHandler();
 
      public static void createAndShowBoard()
@@ -23,80 +23,35 @@ public class Board
      {
           pane.setLayout(new GridLayout(3, 3));
 
-          for (int i = 0; i < buttons.length; i++)
+          for (int i = 0; i < squares.length; i++)
           {
-               buttons[i] = new JButton();
-               pane.add(buttons[i]);
-               buttons[i].addActionListener(showXO);
-               buttons[i].setActionCommand("Button" + i);
+               squares[i] = new JButton();
+               pane.add(squares[i]);
+               squares[i].addActionListener(showXO);
+               squares[i].setActionCommand("" + i);
           }
      }
 
      private class SquareHandler implements ActionListener
      {
           int moves                = 0;
+          int squareNumber         = 0;
+          String squareClicked     = "";
           String playerSymbol      = "";
-          String buttonClicked     = "";
           boolean[] clickedSquares = new boolean[9];
           
           public void actionPerformed(ActionEvent e)
           {
-               buttonClicked  = e.getActionCommand();
-               playerSymbol   = getPlayerSymbol();
+               squareClicked  = e.getActionCommand();            
+               squareNumber   = Integer.parseInt(squareClicked); 
+               playerSymbol   = getPlayerSymbol();              
                
-               if (clickedSquares[0] == false && buttonClicked.equals("Button0"))
+               if (clickedSquares[squareNumber] == false)
                {
                     increaseTurnCountByOne();
-                    buttons[0].setText(playerSymbol);
-                    clickedSquares[0] = true;
-               }
-               if (clickedSquares[1] == false && buttonClicked.equals("Button1"))
-               {
-                    increaseTurnCountByOne();
-                    buttons[1].setText(playerSymbol);
-                    clickedSquares[1] = true;
-               }
-               if (clickedSquares[2] == false && buttonClicked.equals("Button2"))
-               {
-                    increaseTurnCountByOne();
-                    buttons[2].setText(playerSymbol);
-                    clickedSquares[2] = true;
-               }
-               if (clickedSquares[3] == false && buttonClicked.equals("Button3"))
-               {
-                    increaseTurnCountByOne();
-                    buttons[3].setText(playerSymbol);
-                    clickedSquares[3] = true;
-               }
-               if (clickedSquares[4] == false && buttonClicked.equals("Button4"))
-               {
-                    increaseTurnCountByOne();
-                    buttons[4].setText(playerSymbol);
-                    clickedSquares[4] = true;
-               }
-               if (clickedSquares[5] == false && buttonClicked.equals("Button5"))
-               {
-                    increaseTurnCountByOne();
-                    buttons[5].setText(playerSymbol);
-                    clickedSquares[5] = true;
-               }
-               if (clickedSquares[6] == false && buttonClicked.equals("Button6"))
-               {
-                    increaseTurnCountByOne();
-                    buttons[6].setText(playerSymbol);
-                    clickedSquares[6] = true;
-               }
-               if (clickedSquares[7] == false && buttonClicked.equals("Button7"))
-               {
-                    increaseTurnCountByOne();
-                    buttons[7].setText(playerSymbol);
-                    clickedSquares[7] = true;
-               }
-               if (clickedSquares[8] == false && buttonClicked.equals("Button8"))
-               {
-                    increaseTurnCountByOne();
-                    buttons[8].setText(playerSymbol);
-                    clickedSquares[8] = true;
+                    squares[squareNumber].setText(playerSymbol);
+                    clickedSquares[squareNumber] = true;
+                    System.out.println(moves);
                }
           }
 
