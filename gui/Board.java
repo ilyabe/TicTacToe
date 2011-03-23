@@ -34,11 +34,16 @@ public class Board
 
      private class SquareHandler implements ActionListener
      {
-          int moves                = 0;
-          int squareNumber         = 0;
-          String squareClicked     = "";
-          String playerSymbol      = "";
-          boolean[] clickedSquares = new boolean[9];
+          int moves                     = 0;
+          int squareNumber              = 0;
+          String squareClicked          = "";
+          String playerSymbol           = "";
+          boolean[] clickedSquares      = new boolean[9];
+          int computerMove              = 0;
+          final int MAX_NUMBER_OF_MOVES = 9; 
+
+          // Computer player
+          ComputerPlayer computer = new ComputerPlayer();
           
           public void actionPerformed(ActionEvent e)
           {
@@ -48,9 +53,20 @@ public class Board
                
                if (clickedSquares[squareNumber] == false)
                {
+                    // Player's move
                     increaseTurnCountByOne();
                     squares[squareNumber].setText(playerSymbol);
                     clickedSquares[squareNumber] = true;
+
+                    // Computer's response
+                    if (moves < MAX_NUMBER_OF_MOVES) 
+                    {
+                         computerMove   = computer.move(clickedSquares);
+                         playerSymbol   = getPlayerSymbol();
+                         squares[computerMove].setText(playerSymbol);
+                         increaseTurnCountByOne();
+                         clickedSquares[computerMove] = true;
+                    }
                }
           }
 
